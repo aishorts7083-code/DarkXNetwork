@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Clear screen
 clear
 
-# Red DARKX ASCII Art for authentication feel
 echo -e "\e[1;31m
 ██████╗  █████╗ ██████╗ ██╗  ██╗██╗  ██╗
 ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝╚██╗██╔╝
@@ -16,22 +14,18 @@ echo -e "\e[1;31m
 
 echo -e "\e[1;36m[*] Installing Required Packages...\e[0m"
 pkg update -y && pkg upgrade -y
-pkg install python -y
+pkg install python git curl -y
 pip install requests rich colorama urllib3
 
+echo -e "\e[1;36m[*] Downloading and Setting up DarkXNetwork...\e[0m"
+# Pehle se agar folder hai toh delete karega, phir naya clone karega
+rm -rf /data/data/com.termux/files/usr/share/darkxnetwork
+git clone https://github.com/aishorts7083-code/DarkXNetwork.git /data/data/com.termux/files/usr/share/darkxnetwork
+
 echo -e "\e[1;36m[*] Setting up the 'darkxnetwork' shortcut command...\e[0m"
-
-# Creating a hidden directory for the tool
-mkdir -p /data/data/com.termux/files/usr/share/darkxnetwork
-
-# Copying the python script to the safe location
-cp darkx.py /data/data/com.termux/files/usr/share/darkxnetwork/
-
-# Creating the bash executable command
 echo '#!/bin/bash' > /data/data/com.termux/files/usr/bin/darkxnetwork
 echo 'python /data/data/com.termux/files/usr/share/darkxnetwork/darkx.py' >> /data/data/com.termux/files/usr/bin/darkxnetwork
 
-# Giving execution permission
 chmod +x /data/data/com.termux/files/usr/bin/darkxnetwork
 chmod +x /data/data/com.termux/files/usr/share/darkxnetwork/darkx.py
 
