@@ -13,12 +13,12 @@ echo -e "\e[1;31m
 \e[0m"
 
 echo -e "\e[1;36m[*] Installing Required Packages...\e[0m"
-pkg update -y && pkg upgrade -y
+# Bas pkg update rakha hai taaki error na aaye
+pkg update -y 
 pkg install python git curl -y
 pip install requests rich colorama urllib3
 
 echo -e "\e[1;36m[*] Downloading and Setting up DarkXNetwork...\e[0m"
-# Pehle se agar folder hai toh delete karega, phir naya clone karega
 rm -rf /data/data/com.termux/files/usr/share/darkxnetwork
 git clone https://github.com/aishorts7083-code/DarkXNetwork.git /data/data/com.termux/files/usr/share/darkxnetwork
 
